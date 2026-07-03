@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Time Capsule — Your Birth Day in History</title>
+  <meta name="description" content="Step back in time and discover what the world looked like on the day you were born. A magical journey through history." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=Bebas+Neue&family=Special+Elite&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ════════════════════════════════════════════════
+       LANDING PAGE
+  ════════════════════════════════════════════════ -->
+  <section id="landing" class="landing-page">
+    <div class="stars-bg"></div>
+    <div class="nebula-1"></div>
+    <div class="nebula-2"></div>
+    <div class="nebula-3"></div>
+
+    <div class="landing-content">
+      <div class="crown-icon">✦ ✦ ✦</div>
+      <h1 class="landing-title">
+        <span class="title-line-1">A Gift of Time</span>
+        <span class="title-line-2">Capsule</span>
+      </h1>
+      <p class="landing-subtitle">Discover what the world looked like on the day you arrived — a love letter written in history.</p>
+
+      <div class="date-form-wrapper">
+        <div class="form-glass">
+          <p class="form-label">Enter the sacred date</p>
+          <div class="date-inputs">
+            <div class="input-group">
+              <label>Day</label>
+              <input type="number" id="day-input" min="1" max="31" placeholder="04" />
+            </div>
+            <div class="input-divider">/</div>
+            <div class="input-group">
+              <label>Month</label>
+              <input type="number" id="month-input" min="1" max="12" placeholder="07" />
+            </div>
+            <div class="input-divider">/</div>
+            <div class="input-group">
+              <label>Year</label>
+              <input type="number" id="year-input" min="1990" max="2015" placeholder="2002" />
+            </div>
+          </div>
+          <div class="name-input-group">
+            <label>Her name</label>
+            <input type="text" id="name-input" placeholder="e.g. Priya, Ananya, Neha…" maxlength="20" />
+          </div>
+          <button class="magic-btn" id="travel-btn" onclick="startJourney()">
+            <span class="btn-text">Open the Time Capsule</span>
+            <span class="btn-glow"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="floating-elements">
+      <div class="float-el f1">📻</div>
+      <div class="float-el f2">📼</div>
+      <div class="float-el f3">🎞️</div>
+      <div class="float-el f4">📟</div>
+      <div class="float-el f5">🕹️</div>
+      <div class="float-el f6">📷</div>
+    </div>
+  </section>
+
+  <!-- TRANSITION PORTAL -->
+  <div id="transition-overlay" class="transition-overlay">
+    <div class="portal-ring r1"></div>
+    <div class="portal-ring r2"></div>
+    <div class="portal-ring r3"></div>
+    <div class="portal-ring r4"></div>
+    <div class="portal-text">Travelling back in time</div>
+    <div class="portal-year" id="portal-year-display">2002</div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════
+       TIME CAPSULE PAGE
+  ════════════════════════════════════════════════ -->
+  <section id="capsule-page" class="capsule-page hidden">
+
+    <!-- ① NEWSPAPER HERO — unchanged (user loves it) -->
+    <div class="newspaper-hero" id="newspaper-hero">
+      <div class="paper-texture"></div>
+      <div class="hero-inner">
+        <div class="newspaper-top-bar">
+          <span class="paper-edition">SPECIAL EDITION</span>
+          <div class="paper-title-wrap">
+            <div class="paper-ornament">✦ ✦ ✦</div>
+            <h2 class="paper-main-title">THE TIME CAPSULE GAZETTE</h2>
+            <div class="paper-ornament">✦ ✦ ✦</div>
+          </div>
+          <span class="paper-price">PRICELESS</span>
+        </div>
+        <div class="paper-date-bar" id="paper-date-bar">
+          THE WORLD ON — <span id="hero-date-display">4th July, 2002</span>
+        </div>
+        <div class="hero-headline-block">
+          <div class="hero-subhead">A CHILD IS BORN — AND THE WORLD CELEBRATES</div>
+          <h1 class="hero-headline">
+            <span id="hero-name-display">She</span> Arrives Into a World of Wonder
+          </h1>
+          <p class="hero-deck" id="hero-deck">On this extraordinary day, the universe paused to welcome a new soul. Here is everything the world held in its arms as she took her very first breath.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ② WORLD IN NUMBERS -->
+    <div class="section-wrap">
+      <div class="section-header">
+        <div class="section-tag">The World in Numbers</div>
+        <h2 class="section-title">Snapshot of Earth<br><em>on Your Birthday</em></h2>
+      </div>
+      <div class="snapshot-grid" id="snapshot-grid"></div>
+    </div>
+
+    <!-- ③ INDIA -->
+    <div class="india-section">
+      <div class="india-bg-text">भारत</div>
+      <div class="section-wrap">
+        <div class="section-header">
+          <div class="section-tag">🇮🇳 Incredible India</div>
+          <h2 class="section-title">India<br><em>That Year</em></h2>
+        </div>
+        <div class="india-cards" id="india-cards"></div>
+      </div>
+    </div>
+
+    <!-- ④ HEADLINES — with image sidebar -->
+    <div class="section-wrap">
+      <div class="section-header">
+        <div class="section-tag">Breaking News</div>
+        <h2 class="section-title">Top Headlines of <em id="headlines-year">2002</em></h2>
+        <p class="section-sub">The stories that defined your birth year</p>
+      </div>
+      <div class="headlines-layout">
+        <div class="headlines-main" id="headlines-grid"></div>
+        <div class="headlines-sidebar">
+          <img class="sidebar-photo" src="img_world.png" alt="World events collage from 2002" />
+          <p class="sidebar-caption">A world in motion — the year's events frozen in time, just as you arrived to witness it all.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ⑤ POP CULTURE -->
+    <div class="culture-section">
+      <div class="section-wrap">
+        <div class="section-header">
+          <div class="section-tag">Pop Culture</div>
+          <h2 class="section-title">What the World<br><em>Was Watching</em></h2>
+        </div>
+        <div class="culture-tabs">
+          <button class="tab-btn active" onclick="switchTab('movies', event)">🎬 &nbsp;Cinema</button>
+          <button class="tab-btn" onclick="switchTab('music', event)">🎵 &nbsp;Music</button>
+          <button class="tab-btn" onclick="switchTab('tv', event)">📺 &nbsp;Television</button>
+        </div>
+        <div class="culture-content" id="culture-content"></div>
+      </div>
+    </div>
+
+    <!-- ⑥ PRICES THEN vs NOW -->
+    <div class="section-wrap">
+      <div class="section-header">
+        <div class="section-tag">Then & Now</div>
+        <h2 class="section-title">What Did Things<br><em>Cost Back Then?</em></h2>
+        <p class="section-sub">How money has changed since the day you were born</p>
+      </div>
+      <div id="prices-grid"></div>
+    </div>
+
+    <!-- ⑦ TECH: EXISTED vs NOT YET -->
+    <div class="tech-section">
+      <div class="section-wrap">
+        <div class="section-header">
+          <div class="section-tag">Technology</div>
+          <h2 class="section-title">The Tech World<br><em>You Were Born Into</em></h2>
+        </div>
+        <div class="tech-two-col">
+          <div class="tech-col exist">
+            <div class="tech-col-label">Already in the World</div>
+            <div class="tech-list" id="tech-existed"></div>
+          </div>
+          <div class="tech-col notyet">
+            <div class="tech-col-label">Not Invented Yet</div>
+            <div class="tech-list" id="tech-notyet"></div>
+          </div>
+        </div>
+
+        <!-- Retro tech image -->
+        <div style="margin-top:4rem;border:1px solid var(--border);overflow:hidden;">
+          <img src="img_tech.png" alt="Retro technology from early 2000s" style="width:100%;max-height:420px;object-fit:cover;filter:sepia(20%) contrast(1.05);display:block;" />
+          <div style="padding:1.25rem 1.5rem;border-top:1px solid var(--border);">
+            <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:0.95rem;color:var(--warm-lt);">The devices of that era — a Nokia 3310, a stack of CDs, a floppy disk. These were the tools of your earliest world.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ⑧ LOST IN TIME -->
+    <div class="section-wrap">
+      <div class="section-header">
+        <div class="section-tag">Lost in Time</div>
+        <h2 class="section-title">Things That<br><em>No Longer Exist</em></h2>
+        <p class="section-sub">The beloved relics of your birth year — gone, but never forgotten</p>
+      </div>
+      <div class="lost-grid" id="lost-grid"></div>
+    </div>
+
+    <!-- ⑨ POPULATION -->
+    <div class="population-section">
+      <div class="pop-inner">
+        <span class="pop-icon">🌏</span>
+        <p class="pop-text">When you were born, the world had</p>
+        <div class="pop-number" id="pop-number">6.2 Billion</div>
+        <p class="pop-text">people on Earth. And on that very day, you were one of</p>
+        <div class="pop-births" id="pop-births">~370,000</div>
+        <p class="pop-text">babies born across the globe.</p>
+      </div>
+    </div>
+
+    <!-- ⑩ 📷 CAMERA LOVER SPECIAL SECTION -->
+    <div class="camera-section">
+      <div class="section-wrap">
+        <div class="section-header">
+          <div class="section-tag">For the One Who Sees Beauty</div>
+          <h2 class="section-title">A Lens On<br><em>Your Birth Year</em></h2>
+          <p class="section-sub">You were born in an era when photography was still magic — when every frame cost something, and every print was a miracle.</p>
+        </div>
+
+        <div class="camera-hero-row fade-in-up">
+          <div class="camera-image-block">
+            <img src="img_cameras.png" alt="Vintage film cameras and photography gear from 2002" />
+          </div>
+          <div class="camera-text-block">
+            <div class="camera-eyebrow">📷 Photography in Your Birth Year</div>
+            <h3 class="camera-title">When Film Was<br><em>Still Everything</em></h3>
+            <p class="camera-body">In 2002, the world was still shooting on film. Digital cameras existed — but they were expensive, clunky, and couldn't match the warmth of a well-developed roll of Kodak 400. Most families documented life with disposable cameras bought from a chemist shop, or prized 35mm SLRs passed down from parents. You'd shoot 24 or 36 frames, drop the roll at a photo studio, wait two days — and finally hold those precious prints in your hands for the first time. No preview. No delete. Just light on silver, and hope.</p>
+            <blockquote class="camera-fact">"Photography is the art of frozen time — the ability to store emotion and feelings within a frame." — Meshack Otieno</blockquote>
+          </div>
+        </div>
+
+        <div class="camera-gear-grid fade-in-up" id="camera-gear-grid"></div>
+
+        <div class="darkroom-row fade-in-up" style="margin-top:4rem;">
+          <div class="darkroom-text">
+            <div class="camera-eyebrow">The Lost Art</div>
+            <p class="pull-quote">"She sees the world through a lens — always has. She was born in the last golden age of film, when the magic of a photograph still felt like a miracle."</p>
+            <p class="pull-quote-attr">— A note from the one who loves her</p>
+          </div>
+          <div class="darkroom-image">
+            <img src="img_darkroom.png" alt="Film darkroom developing prints" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ⑪ FAMOUS PEOPLE -->
+    <div class="section-wrap">
+      <div class="section-header">
+        <div class="section-tag">Famous Birthdays</div>
+        <h2 class="section-title">Born Around<br><em id="famous-year">2002</em></h2>
+      </div>
+      <div class="famous-grid" id="famous-grid"></div>
+    </div>
+
+    <!-- ⑫ LOVE NOTE -->
+    <div class="love-note-section">
+      <div class="love-inner">
+        <span class="love-icon">💌</span>
+        <h2 class="love-title" id="love-title">Dear Priya,</h2>
+        <p class="love-text" id="love-text">The world was already beautiful — but it became extraordinary the moment you arrived. Every headline, every song, every frame of film from that year now carries a secret. Because somewhere in all that colour and noise, the universe was quietly preparing for you.</p>
+        <div class="love-rule"></div>
+        <p class="love-signature">With love, always ♥</p>
+      </div>
+    </div>
+
+    <!-- BACK -->
+    <div class="back-wrap">
+      <button class="back-btn" onclick="goBack()">← Travel to Another Date</button>
+    </div>
+
+  </section>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
